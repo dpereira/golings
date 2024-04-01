@@ -92,4 +92,16 @@ var _ = Describe("Exercises", func() {
 			})
 		})
 	})
+	Describe("Reporting progress", func() {
+		When("half exercises pending", func() {
+			It("reports 50%% progress", func() {
+				progress, done, total, err := exercises.Progress("../fixtures/progress/info.toml")
+
+				Expect(err).NotTo(HaveOccurred())
+				Expect(done).To(Equal(1))
+				Expect(total).To(Equal(2))
+				Expect(progress).To(Equal(float32(0.5)))
+			})
+		})
+	})
 })
